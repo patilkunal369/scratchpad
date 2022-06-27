@@ -1,0 +1,64 @@
+{
+  "name": "scratchpad",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^34.1.0",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
+    "@date-io/date-fns": "^2.14.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/lab": "^5.0.0-alpha.86",
+    "@mui/material": "^5.8.2",
+    "@mui/x-date-pickers": "^5.0.0-alpha.5",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/react": "^12.1.1",
+    "@testing-library/user-event": "^12.5.0",
+    "@tippyjs/react": "^4.2.6",
+    "axios": "^0.26.1",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.3.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "mui-rte": "^2.0.1",
+    "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-modal": "^3.15.1",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^8.2.0",
+    "sass": "^1.52.1",
+    "socket.io-client": "^4.5.1",
+    "styled-components": "^5.3.3",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
