@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const NavItemWrapper = styled.li`
+const NavItemWrapper = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -18,21 +18,21 @@ const NavItemWrapper = styled.li`
 
   &.selected {
     background-color: rgb(242, 243, 245);
-    color: rgb(101, 114, 235);
+    color: var(--primary);
     /* font-weight: 600; */
   }
 
   &:hover {
     background-color: var(--neutral_white);
-    color: rgb(101, 114, 235);
+    color: var(--primary);
     cursor: pointer;
   }
 `;
 const NavItem = ({ icon, label, selected, path }) => {
   return (
-    <NavItemWrapper className={selected && "selected"}>
+    <NavItemWrapper className={selected && "selected"} to={path}>
       {icon}
-      <Link to={path}>{label}</Link>
+      {label}
     </NavItemWrapper>
   );
 };

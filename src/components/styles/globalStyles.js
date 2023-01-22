@@ -5,8 +5,8 @@ export const GlobalStyles = createGlobalStyle`
 :root{
 
     --secondary: rgba(112, 152, 125, 1.00);
-    --primary: rgb(79, 93, 202);
-    --primary_light: rgba(79, 93, 202, 0.8);
+    --primary: rgb(33, 150, 243);
+    --primary_light: rgb(0, 188, 212);
     --neutral_light_brown: rgba(203, 189, 167, 1.00);
     --neutral_white: rgba(226, 227, 233, 1.00);
     --neutral_grey: rgba(189, 194, 201, 1.00);

@@ -8,7 +8,7 @@ const commonInput = css`
   border-radius: 0.5rem;
 
   border: 1.5px solid transparent;
-
+  transition: border 0.5s;
   &::placeholder {
     color: rgba(121, 135, 148, 1);
   }
@@ -33,13 +33,16 @@ export const StyledInput = styled(Field)`
           background-size: 1.5rem;
           background-color: white;
           padding-left: 3rem;
-          transition: transform 0.1s;
         `;
       case "form":
         return css`
           ${commonInput}
-          padding: 0.3rem 0.5rem;
+          padding: 0.6rem 1rem;
           width: 100%;
+
+          &.newSubject {
+            border: 1.5px solid var(--primary);
+          }
         `;
       case "taskForm":
         return css`

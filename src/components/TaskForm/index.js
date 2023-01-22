@@ -1,12 +1,17 @@
 import { Formik } from "formik";
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTaskListSelector } from "../../store/reducers/taskList";
 import {
+  addTaskToList,
+  closeTaskModal,
+  createTask,
+  createTaskLocalState,
   updateTask,
   updateTaskLocalState,
   useTaskModalSelector,
+  moveTask,
 } from "../../store/reducers/tasks";
 import Input from "../common/Form/Input";
 import RichTextBox from "../common/Form/RichTextbox";
@@ -19,13 +24,17 @@ import { DetailsWrapper, TaskFormWrapper } from "./TaskForm.styles";
 import { useSelectedBoardSelector } from "../../store/reducers/selectedBoard";
 import Button, { ButtonGroup } from "../common/Button";
 import moment from "moment";
+import { v4 as uuid } from "uuid";
+import { Snackbar } from "@mui/material";
+import { API_STATUS } from "../../utils/constants";
+import SubTasks from "./SubTasks";
 
 const TaskForm = () => {
   const dispatch = useDispatch();
 
   const { taskList } = useTaskListSelector();
   const { modalType, editTaskValues } = useTaskModalSelector();
-  const { tagList } = useSelectedBoardSelector();
+  const { id: boardId, tagList } = useSelectedBoardSelector();
 
   const formatTags = () => {
     return editTaskValues.tags.map((tag) => {
@@ -51,6 +60,7 @@ const TaskForm = () => {
         listId: taskList[0].id,
         tags: [],
         dueDate: moment(new Date()).format("L"),
+        subTasks: [],
       };
     }
   };
@@ -70,7 +80,23 @@ const TaskForm = () => {
       const [label, value, color] = tag.split("|");
       return value;
     });
-    dispatch(updateTaskLocalState({ ...values, tags: tags }));
+    if (modalType === "edit") {
+      dispatch(updateTaskLocalState({ ...values, tags: tags }));
+      dispatch(updateTask({ ...values, tags: tags }));
+    }
+
+    if (modalType === "create") {
+      const parameters = {
+        ...values,
+        boardId: boardId,
+        id: uuid(),
+        tags: tags,
+        listIndex: 0,
+      };
+
+      dispatch(addTaskToList(parameters));
+    }
+    dispatch(closeTaskModal());
   };
 
   return (
@@ -80,7 +106,7 @@ const TaskForm = () => {
       validateOnChange={false}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
+      {({ values }) => (
         <TaskFormWrapper>
           <div className="inputs">
             <Input
@@ -92,15 +118,16 @@ const TaskForm = () => {
           </div>
 
           <DetailsWrapper>
-            <Status options={statusOptions()} />
+            <Status options={statusOptions()} modalType={modalType} />
             <AddAssignee />
             <DueDatePicker />
             <Reporter />
             <AddTags name="tags" />
           </DetailsWrapper>
+          <SubTasks subTasks={editTaskValues.subTasks} />
           <ButtonGroup style={{ marginTop: "auto" }}>
             <Button styleType="primary" value="Save" type="submit" />
-            <Button styleType="primary" value="Cancel" type="button" />
+            <Button styleType="secondary" value="Reset" type="reset" />
           </ButtonGroup>
         </TaskFormWrapper>
       )}

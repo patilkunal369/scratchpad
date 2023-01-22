@@ -2,7 +2,7 @@ import { Form } from "formik";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const CreateBoardModalWrapper = styled(Form)`
+export const ModalFormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   padding: 2rem;
@@ -12,7 +12,7 @@ export const CreateBoardModalWrapper = styled(Form)`
   min-width: 30rem;
 `;
 
-export const createBoardModalVariants = {
+export const modalFormVariants = {
   initial: {
     y: -300,
     opacity: 0,

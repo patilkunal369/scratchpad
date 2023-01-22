@@ -26,6 +26,12 @@ export const LoginFormWrapper = styled(Form)`
 
 export const loginVariant = {
   initial: { x: "-100vw" },
-  animate: { x: 0 },
-  exit: { x: "-100vw" },
+  animate: {
+    x: 0,
+    transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] },
+  },
 };

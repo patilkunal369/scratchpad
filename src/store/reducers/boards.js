@@ -42,6 +42,8 @@ export const addBoard = createAsyncThunk(
       const response = await axiosInstance.post("boards", {
         id: uuid(),
         userId,
+        members: [userId],
+        tagList: [],
         ...board,
       });
       return response.data;

@@ -1,4 +1,5 @@
 import LoadingButton from "@mui/lab/LoadingButton";
+import { Button } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { ErrorMessage, Formik } from "formik";
 import { motion } from "framer-motion";
@@ -47,7 +48,7 @@ const Login = () => {
 
   useEffect(() => {
     if (status === API_STATUS.FULFILLED) {
-      navigate("/");
+      navigate("/", { state: { prevPath: "/login" }, replace: true });
     }
   }, [status]);
 
@@ -78,6 +79,7 @@ const Login = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -100 }}
                   animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 100 }}
                 >
                   <Alert severity="error" sx={{ mb: 3 }}>
                     {error}
@@ -97,6 +99,9 @@ const Login = () => {
               >
                 Login
               </LoadingButton>
+              <Button onClick={() => navigate("/invite")}>
+                Login with invite
+              </Button>
             </LoginFormWrapper>
           </>
         )}

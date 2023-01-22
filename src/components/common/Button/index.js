@@ -41,7 +41,8 @@ const StyledButton = styled(motion.button)`
         return css`
           ${commonButton}
           color: var(--primary);
-          background-color: rgb(227, 228, 249);
+          background-color: white;
+          border: 2px solid rgb(227, 228, 249);
         `;
       case "largeButton":
         return css`

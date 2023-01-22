@@ -20,6 +20,10 @@ import { fetchTasks, moveTask } from "../../store/reducers/tasks";
 import { API_STATUS } from "../../utils/constants";
 import { BoardContainer, containerVariants } from "./Board.styles";
 import TaskList from "./TaskList";
+import { useInviteUser } from "../../store/reducers/inviteUser";
+import InviteUserForm from "../../components/InviteUserForm";
+import { boardVariant } from "../Boards/Boards.styles";
+import { useUserSelector } from "../../store/reducers/user";
 
 const Board = () => {
   const dispatch = useDispatch();
@@ -31,8 +35,8 @@ const Board = () => {
   useEffect(() => {
     if (state) {
       dispatch(selectBoard(state));
-      dispatch(fetchTaskList(state.boardId));
-      dispatch(fetchTasks(state.boardId));
+      dispatch(fetchTaskList(state.id));
+      dispatch(fetchTasks(state.id));
     }
   }, [state]);
 
@@ -42,6 +46,8 @@ const Board = () => {
 
   const isTaskModalOpen = useSelector((state) => state.tasks.isTaskModalOpen);
 
+  const { isInviteUserModalOpen } = useUserSelector();
+
   return (
     <>
       <AnimatePresence exitBeforeEnter>
@@ -50,6 +56,8 @@ const Board = () => {
             <TaskForm />
           </SidePanel>
         )}
+
+        {isInviteUserModalOpen && <InviteUserForm />}
       </AnimatePresence>
 
       <DragDropContext onDragEnd={onDragEnd}>
@@ -58,23 +66,23 @@ const Board = () => {
           {status === API_STATUS.REJECTED && <Error errorMessage={error} />}
           {status === API_STATUS.FULFILLED && (
             <>
-              {taskList.length === 0 && (
+              {taskList.length === 0 ? (
                 <Error errorMessage="No Task added yet" />
+              ) : (
+                <BoardContainer
+                  color={board.color}
+                  initial="hidden"
+                  animate="show"
+                  variants={containerVariants}
+                >
+                  {taskList.length > 0 &&
+                    taskList.map((list) => {
+                      return (
+                        <TaskList key={list.id} listId={list.id} list={list} />
+                      );
+                    })}
+                </BoardContainer>
               )}
-
-              <BoardContainer
-                color={board.color}
-                initial="hidden"
-                animate="show"
-                variants={containerVariants}
-              >
-                {taskList.length > 0 &&
-                  taskList.map((list) => {
-                    return (
-                      <TaskList key={list.id} listId={list.id} list={list} />
-                    );
-                  })}
-              </BoardContainer>
             </>
           )}
         </motion.div>

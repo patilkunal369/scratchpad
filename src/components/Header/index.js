@@ -7,9 +7,11 @@ import Button, { ButtonGroup } from "../common/Button";
 import Input from "../common/Form/Input";
 import { StyledHeder, TopBarWrapper } from "./Header.styles";
 import Options from "./Options";
+import Assignee from "../Assignee";
+import ProjectMembers from "./ProjectMembers";
 
 const Header = () => {
-  const { name } = useSelectedBoardSelector();
+  const { name, members } = useSelectedBoardSelector();
 
   const currentPathPattern = useCurrentPath();
 
@@ -19,28 +21,30 @@ const Header = () => {
     } else return name;
   };
 
-  projectName();
   return (
-    <StyledHeder>
-      <div className="projectOptions">
-        <h1>{projectName()}</h1>
-        <Options />
-      </div>
-      <Formik initialValues={{ search: "" }}>
-        {(formik) => (
-          <Form>
-            <TopBarWrapper>
-              <Input name="search" styleType="search" placeholder="Search" />
-              <ButtonGroup>
-                <Button name="userProfile" styleType="topBar">
-                  <AiOutlineUser size="1.5rem" />
-                </Button>
-              </ButtonGroup>
-            </TopBarWrapper>
-          </Form>
-        )}
-      </Formik>
-    </StyledHeder>
+    <header>
+      <StyledHeder>
+        <div className="projectOptions">
+          <h1>{projectName()}</h1>
+          {name && <Options />}
+        </div>
+        <Formik initialValues={{ search: "" }}>
+          {(formik) => (
+            <Form>
+              <TopBarWrapper>
+                <Input name="search" styleType="search" placeholder="Search" />
+                <ButtonGroup>
+                  <Button name="userProfile" styleType="topBar">
+                    <AiOutlineUser size="1.5rem" />
+                  </Button>
+                </ButtonGroup>
+              </TopBarWrapper>
+            </Form>
+          )}
+        </Formik>
+      </StyledHeder>
+      {name && <ProjectMembers members={members} />}
+    </header>
   );
 };
 

@@ -1,9 +1,10 @@
 import styled from "styled-components";
-export const StyledHeder = styled.header`
+export const StyledHeder = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+
   h1 {
     color: var(--neutral_font);
   }

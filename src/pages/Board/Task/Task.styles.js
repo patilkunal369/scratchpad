@@ -39,6 +39,10 @@ export const TaskWrapper = styled(motion.li)`
     display: flex;
     gap: 0.3rem;
   }
+
+  .selected {
+    z-index: 99999;
+  }
 `;
 export const DetailsWrapper = styled.div`
   display: flex;

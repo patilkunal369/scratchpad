@@ -13,10 +13,13 @@ const selectedBoard = createSlice({
         ...payload,
       };
     },
+    clearSelectedBoard(state, { type, payload }) {
+      return {};
+    },
   },
 });
 
-export const { selectBoard } = selectedBoard.actions;
+export const { selectBoard, clearSelectedBoard } = selectedBoard.actions;
 export const useSelectedBoardSelector = () =>
   useSelector((state) => state.selectedBoard);
 

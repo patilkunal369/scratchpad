@@ -9,9 +9,9 @@ const Modal = ({ handleClose, children }) => {
       <motion.div
         onClick={(e) => e.stopPropagation()}
         key="modal"
-        initial={{ y: "-100vh", scale: 0 }}
-        animate={{ y: 0, scale: 1.2 }}
-        exit={{ y: "100vh", scale: 0 }}
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
+        exit={{ y: "100vh" }}
         transition={{
           type: "tween",
           linear: [0.23, 1, 0.32, 1],

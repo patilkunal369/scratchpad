@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BsClockHistory } from "react-icons/bs";
+import moment from "moment";
 
 const DeadlineWrapper = styled.div`
   display: flex;
@@ -16,11 +17,15 @@ const DeadlineWrapper = styled.div`
   }
 `;
 
-const Deadline = ({ timeLeft }) => {
+const Deadline = ({ dueDate }) => {
+  const formattedTodaysDate = moment(new Date(), "MM-Dd-YYYY");
+  const formattedDueDate = moment(dueDate, "MM-DD-YYYY");
+
+  const daysLeft = formattedDueDate.diff(formattedTodaysDate, "day");
   return (
     <DeadlineWrapper>
       <BsClockHistory size="1rem" />
-      <span>{timeLeft} Left</span>
+      <span>{daysLeft > 0 ? `${daysLeft} Days Left` : "Over Due"}</span>
     </DeadlineWrapper>
   );
 };

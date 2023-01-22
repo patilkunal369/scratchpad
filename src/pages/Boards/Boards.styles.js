@@ -71,7 +71,9 @@ export const BoardsWrapper = styled(motion.div)`
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+  height: 100%;
 `;
 
 export const BoardMenuWrapper = styled(motion.div)`

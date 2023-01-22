@@ -5,6 +5,7 @@ import taskList from "./reducers/taskList";
 import tasks from "./reducers/tasks";
 import user from "./reducers/user";
 import createBoardModal from "./reducers/createBoardModal";
+import inviteUser from "./reducers/inviteUser";
 
 export const rootReducer = combineReducers({
   boards,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   tasks,
   createBoardModal,
   user,
+  inviteUser,
 });

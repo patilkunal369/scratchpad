@@ -1,26 +1,32 @@
 import { AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import BoardModal from "../../components/BoardModal";
 import Error from "../../components/common/Error";
 import Spinner from "../../components/common/Spinner";
-import BoardModal from "../../components/BoardModal";
 import { fetchBoards, useBoardsSelector } from "../../store/reducers/boards";
 import {
   openCreateBoardModal,
-  useCreateBoardModal,
+  useCreateBoardModal
 } from "../../store/reducers/createBoardModal";
+import { clearSelectedBoard } from "../../store/reducers/selectedBoard";
+import { clearTaskList } from "../../store/reducers/taskList";
+import { clearTasks } from "../../store/reducers/tasks";
 import { containerVariants } from "../Board/Board.styles";
 import BoardButton from "./BoardButton";
 import { BoardButtonWrapper, BoardsWrapper } from "./Boards.styles";
-import { io } from "socket.io-client";
 
 const Boards = () => {
   const { boards, isLoading, isError, error } = useBoardsSelector();
   const { isCreateBoardModalOpen } = useCreateBoardModal();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(clearSelectedBoard());
+    dispatch(clearTaskList());
+    dispatch(clearTasks());
     dispatch(fetchBoards());
   }, []);
 
@@ -30,6 +36,7 @@ const Boards = () => {
         {isCreateBoardModalOpen && <BoardModal />}
       </AnimatePresence>
       {isError && <Error errorMessage={error} />}
+
       <BoardsWrapper variants={containerVariants}>
         <BoardButtonWrapper
           onClick={() => {
@@ -41,7 +48,10 @@ const Boards = () => {
         </BoardButtonWrapper>
         {Object.entries(boards).length > 0 &&
           boards.map((board, index) => (
-            <BoardButton board={board} key={index} />
+            <>
+              {console.log(board)}
+              <BoardButton board={board} key={index} />
+            </>
           ))}
         {isLoading && (
           <BoardButtonWrapper

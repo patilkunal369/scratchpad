@@ -13,6 +13,7 @@ export const TaskListWrapper = styled(motion.li)`
     color: white;
   }
   .taskList {
+    background-color: rgba(226, 227, 233, 0.1);
     overflow: auto;
     height: 100%;
     padding: 1rem 0.5rem;
@@ -20,6 +21,8 @@ export const TaskListWrapper = styled(motion.li)`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
   }
 
   .taskCount {

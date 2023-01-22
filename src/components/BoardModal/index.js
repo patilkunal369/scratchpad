@@ -15,7 +15,7 @@ import ColorPicker from "../ColorPicker";
 import Button from "../common/Button";
 import Input from "../common/Form/Input";
 import Modal from "../Modal";
-import { CreateBoardModalWrapper } from "./BoardModal.styles";
+import { ModalFormWrapper } from "./BoardModal.styles";
 
 const BoardModal = () => {
   const dispatch = useDispatch();
@@ -59,7 +59,8 @@ const BoardModal = () => {
     <Modal handleClose={() => dispatch(closeCreateBoardModal())}>
       <Formik initialValues={initialValues()} onSubmit={handleSubmit}>
         {() => (
-          <CreateBoardModalWrapper>
+          <ModalFormWrapper>
+            <p>Please provide board details:</p>
             <Input
               styleType="form"
               name="name"
@@ -72,7 +73,7 @@ const BoardModal = () => {
             />
             <ColorPicker name="color" />
             <Button styleType="primary" value="Submit" type="submit" />
-          </CreateBoardModalWrapper>
+          </ModalFormWrapper>
         )}
       </Formik>
     </Modal>

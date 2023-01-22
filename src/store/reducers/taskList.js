@@ -34,8 +34,8 @@ const taskList = createSlice({
   name: "taskList",
   initialState,
   reducers: {
-    addList(state, { type, payload }) {
-      state.push(payload);
+    clearTaskList(state, { type, payload }) {
+      state.taskList = [];
     },
   },
   extraReducers: (builder) => {
@@ -55,7 +55,7 @@ const taskList = createSlice({
   },
 });
 
-export const { addList } = taskList.actions;
+export const { clearTaskList } = taskList.actions;
 
 export const useTaskListSelector = () => useSelector((state) => state.taskList);
 

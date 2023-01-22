@@ -18,29 +18,20 @@ export const NavbarWrapper = styled(motion.nav)`
 `;
 
 const Navbar = () => {
-  const navbarVariants = {
-    initial: { x: -100 },
-    animate: { x: 0 },
-    exit: { opacity: 0 },
-  };
   return (
-    <NavbarWrapper
-      variants={navbarVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <NavbarWrapper>
       <Logo size="3rem" />
       <ul>
         {NavList.map(({ icon, label, selected, path }, index) => {
           return (
-            <NavItem
-              key={index}
-              icon={icon}
-              label={label}
-              selected={selected}
-              path={path}
-            />
+            <li key={index}>
+              <NavItem
+                icon={icon}
+                label={label}
+                selected={selected}
+                path={path}
+              />
+            </li>
           );
         })}
       </ul>

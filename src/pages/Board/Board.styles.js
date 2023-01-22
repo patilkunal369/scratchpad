@@ -11,6 +11,7 @@ export const BoardContainer = styled(motion.ul)`
   gap: 1rem;
 
   overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 export const containerVariants = {

@@ -11,7 +11,7 @@ const SidePanelWrapper = styled(motion.div)`
   right: 0;
   height: 100%;
 
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   overflow: hidden;
 `;
 const SidePanel = ({ children }) => {

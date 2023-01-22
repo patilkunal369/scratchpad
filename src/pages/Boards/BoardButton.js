@@ -38,7 +38,7 @@ const BoardButton = ({ board }) => {
       variants={selectVariants()}
       initial="initial"
       animate="enter"
-      exit="exit"
+      // exit="exit"
     >
       <Options setIsOptionsOpen={setIsOptionsOpen} key={1} />
       <AnimatePresence exitBeforeEnter initial={false}>

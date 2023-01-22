@@ -6,8 +6,8 @@ import { useFormikContext } from "formik";
 import moment from "moment";
 
 const DueDatePicker = () => {
-  const { setFieldValue } = useFormikContext();
-  const [value, setValue] = useState();
+  const { setFieldValue, values } = useFormikContext();
+  const [value, setValue] = useState(values["dueDate"] || new Date());
   return (
     <div>
       <p>Due Date</p>
